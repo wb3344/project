@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>我的收藏</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/public/static/index/css/iconfont/iconfont.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/common.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/uc.css" rel="stylesheet"/>
+</head>
+<body>
+    <!--头部-->
+    <div class="topper">
+        <div class="wrapper">
+            <div class="left-bar">
+                <div class="back-home divider">
+                    <em></em><a href="index.html">商城首页</a>
+                </div>
+                <div class="item"><a href="">商家中心</a></div>
+            </div>
+            <div class="right-bar">
+                <div class="login-user sub-menu">
+                    <a class="menu-hd" href="">txtangxia<em></em></a>
+                    <div class="down">
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                    </div>
+                </div>
+                {if $user != ''}
+                     <div class="item"><a href="javascript:;">{$user}<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('Dingdan/tuichu')}">退出</a></div>
+                    {else}
+                        <div class="item"><a href="{:url('Login/index')}">登陆<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('Login/register')}">注册</a></div>
+                {/if}
+                <span class=""></span>
+                <div class="cart"><em></em><a href="">购物车<span class="txt-theme">2</span>件</a></div>
+                <div class="order"><em></em><a href="">我的订单</a></div>
+                <div class="fav"><em></em><a href="">我的收藏</a></div>
+                <div class="help"><em></em><a href="">帮助中心</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="uc-header-bg">
+        <div class="uc-header wrapper">
+            <a class="logo" href="index.html"><img src="/public/static/index/img/logo2.png" alt="" /></a>
+            <div class="back-home"><a href="">返回商城首页</a></div>
+            <ul class="uc-nav">
+                <li><a href="">首页</a></li>
+                <li class="toggle">
+                    <span class="label">账户设置<i class="iconfont"></i></span>
+                    <div class="toggle-cont">
+                        <a href="">个人信息</a>
+                        <a href="">安全设置</a>
+                        <a href="">收货地址</a>
+                    </div>
+                </li>
+                <li><a href="">消息中心</a></li>
+            </ul>
+            <div class="schbox">
+                <form action="">
+                    <input class="search-txt" type="text" />
+                    <button class="search-btn">搜索</button>
+                    <div class="suggest-box">
+                        <div class="item" data-title="上衣 短款 短袖">上衣 短款 短袖<div class="tags"><span>雪纺</span><span>蕾丝</span><span>一字领</span></div></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper uc-router">
+        <ul>
+            <li><a href="">首页</a></li>
+            <li><span class="divider"></span></li>
+            <li><span>个人中心</span></li>
+        </ul>
+    </div>
+
+    <div class="wrapper">
+        <div class="uc-main clearfix">
+            <div class="uc-aside">
+                <div class="uc-menu">
+                    <div class="tit">订单中心</div>
+                    <ul class="sublist">
+                        <li><a href="">我的订单</a></li>
+                        <li><a class="active" href="{:url('Footprint/fav')}">我的收藏</a></li>
+                        <li><a href="{:url('Footprint/footprint')}">浏览历史</a></li>
+                    </ul>
+                    <div class="tit">客户服务</div>
+                    <ul class="sublist">
+                        <li><a href="">取消订单记录</a></li>
+                        <li><a href="">退款/退货</a></li>
+                    </ul>
+                    <div class="tit">账户中心</div>
+                    <ul class="sublist">
+                        <li><a href="{:url('Account/account')}">账户信息</a></li>
+                        <li><a href="{:url('Account/security')}">账户安全</a></li>
+                        <!-- <li><a href="">消费记录</a></li>
+                        <li><a href="">收货地址</a></li> -->
+                    </ul>
+                    <div class="tit">消息中心</div>
+                    <ul class="sublist">
+                        <li><a href="{:url('Dingdan/pingjia')}">商品评价</a></li>
+                        <!-- <li><a href="">站内消息</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="uc-content">
+                <div class="uc-panel">
+                    <div class="uc-bigtit">我的收藏</div>
+                    <div class="uc-panel-bd">
+                        <div class="uc-tabs">
+                            <a class="item active" href="uc-fav.html">我收藏的商品</a>
+                            
+                        </div>
+                        <table class="uc-table">
+                            <tr class="hd">
+                                <td width="16" class="check"></td>
+                                <td widtd="360" class="align-left" >
+                                    商家名称
+                                </td>
+                                <td width="100">价格</td>
+                                <td width="100">收藏时间</td>
+                                <td width="120">操作</td>
+                                <td><a href="" title="删除所有收藏" class="del iconfont icon-shanchu"></a></td>
+                            </tr>
+                            {foreach $action as $v}
+                            <tr class="fav-goods">
+                                <td class="check"><input type="checkbox" /></td>
+                                <td class="item">
+                                    <img src="/public/static/index/" alt="" /><span class="name">{$v.gname}</span>
+                                </td>
+                                <td><span class="text-theme fwb">{$v.price}元</span></td>
+                                <td>{$v.addtime}</td>
+                                <td><a href="" class="ui-btn-theme uc-btn-md mb5">点击详情</a><br /></td>
+                                <td><a href="" onclick="del(this,'{$v.id}')" class="text-warning">删除</a></td>
+                            </tr>
+                            {/foreach}
+
+                        </table>
+                        <div align="center">
+                            {$action|raw}
+                        </div>
+                        
+                        <div class="pages">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--脚部-->
+    <div class="fatfooter">
+
+    </div>
+    <!--脚部-->
+</body>
+<script src="/public/static/index/js/jquery.js"></script>
+<link rel="stylesheet" href="/public/static/index/js/icheck/style.css"/>
+<script src="/public/static/index/js/icheck/icheck.min.js"></script>
+<script src="/public/static/index/js/global.js"></script>
+<script>
+$(function () {
+    $('.check input').iCheck({
+            checkboxClass: 'sty1-checkbox'
+        });
+});
+
+
+    function del(obj,id){
+        // alert(id);
+        $.ajax({
+            url:"{:url('Footprint/del')}",
+            type:"post",
+            data:{id:id},
+            session:function(data){
+                alert(data);
+                // if(data > 0){
+                //     alert(data);
+                // }
+            }
+        });
+    }    
+</script>
+</html>

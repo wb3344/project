@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>商城评价</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/public/static/index/css/iconfont/iconfont.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/common.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/uc.css" rel="stylesheet"/>
+      <link href="/public/static/xiangqing/css/same.css?v=1.3.7.2" type="text/css" rel="stylesheet"/>
+    <link href="/public/static/xiangqing/css/member.css?v=1.3.6.0" type="text/css" rel="stylesheet"/>
+      <script src="/public/static/xiangqing/js/jquery.js" type="text/javascript"></script> 
+      <script src="/public/static/xiangqing/js/index.js?virsion=1.3.7.2" type="text/javascript"></script> 
+    <script type="text/javascript" src="/public/static/xiangqing/js/member.js"></script>
+</head>
+<body>
+    <!--头部-->
+    <div class="topper">
+        <div class="wrapper">
+            <div class="left-bar">
+                <div class="back-home divider">
+                    <em></em><a href="{:url('Index/index')}">商城首页</a>
+                </div>
+                <div class="item"><a href="">商家中心</a></div>
+            </div>
+            <div class="right-bar">
+                <!-- <div class="login-user sub-menu">
+                    <a class="menu-hd" href="">txtangxia<em></em></a>
+                    <div class="down">
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                    </div>
+                </div>
+                <div class="item"><a href="">消息（<span class="txt-theme">0</span>）</a></div>
+                <div class="logout divider"><a href="">退出</a></div> -->
+
+                {if $user != ''}
+                     <div class="item"><a href="javascript:;">{$user}<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('Dingdan/tuichu')}">退出</a></div>
+                    {else}
+                        <div class="item"><a href="{:url('Login/index')}">登陆<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('Login/register')}">注册</a></div>
+                {/if}
+
+                <span class=""></span>
+                <div class="cart"><em></em><a href="{:url('GoodsCart/index')}">购物车<span class="txt-theme"></span></a></div>
+                <div class="order"><em></em><a href="{:url('Dingdan/dingdan')}">我的订单</a></div>
+                <div class="fav"><em></em><a href="{:url('Footprint/fav')}">我的收藏</a></div>
+                <div class="help"><em></em><a href="">帮助中心</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="uc-header-bg">
+        <div class="uc-header wrapper">
+            <a class="logo" href="{:url('Index/index')}"><img src="/public/static/index/img/logo2.png" alt="" /></a>
+            <div class="back-home"><a href="">返回商城首页</a></div>
+            <ul class="uc-nav">
+                <li><a href="{:url('Index/index')}">首页</a></li>
+                <li class="toggle">
+                    <span class="label">账户设置<i class="iconfont"></i></span>
+                    <div class="toggle-cont">
+                        <a href="">个人信息</a>
+                        <a href="">安全设置</a>
+                        <a href="">收货地址</a>
+                    </div>
+                </li>
+                <li><a href="">消息中心</a></li>
+            </ul>
+            <div class="schbox">
+                <!-- <form action="">
+                    <input class="search-txt" type="text" />
+                    <button class="search-btn">搜索</button>
+                    <div class="suggest-box">
+                        <div class="item" data-title="上衣 短款 短袖">上衣 短款 短袖<div class="tags"><span>雪纺</span><span>蕾丝</span><span>一字领</span></div></div>
+                    </div>
+                </form> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper uc-router">
+        <ul>
+            <li><a href="{:url('Index/index')}">首页</a></li>
+            <li><span class="divider"></span></li>
+            <li><span>个人中心</span></li>
+        </ul>
+    </div>
+
+    <div class="wrapper">
+        <div class="uc-main clearfix">
+            <div class="uc-aside">
+                <div class="uc-menu">
+                    <div class="tit">订单中心</div>
+                    <ul class="sublist">
+                        <li><a href="{:url('Dingdan/dingdan')}">我的订单</a></li>
+                        <li><a href="{:url('Footprint/fav')}">我的收藏</a></li>
+                        <li><a href="{:url('Footprint/footprint')}">浏览历史</a></li>
+                    </ul>
+                    <div class="tit">客户服务</div>
+                    <ul class="sublist">
+                        <li><a href="">技术支持</a></li>
+                        <!-- <li><a href="">退款/退货</a></li> -->
+                    </ul>
+                    <div class="tit">账户中心</div>
+                    <ul class="sublist">
+                        <li><a href="">账户信息</a></li>
+                        <li><a href="">账户安全</a></li>
+                        <li><a href="">消费记录</a></li>
+                        <li><a href="">收货地址</a></li>
+                    </ul>
+                    <div class="tit">消息中心</div>
+                    <ul class="sublist">
+                        <li><a class="active" href="{:url('Dingdan/pingjia')}">商品评价</a></li>
+                        <li><a href="">站内消息</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="uc-content">
+                <div class="uc-panel">
+                    <div class="uc-bigtit">商品评价</div>
+                    <div class="uc-panel-bd">
+             <div style="margin-left:100px;">
+                <table cellspacing="0" cellpadding="0" border="0" class="member_title-table" style="margin-left:-100px;">
+                <tbody>
+                <tr class="member_myorder-table-first">
+                    <td class="myorder-table_td1" style="font-size:16px;">图片</td>
+                    <td class="myorder-table_td1" style="font-size:16px;">商品信息</td>
+                    <td class="myorder-table_td1" style="font-size:16px;">付款总金额</td>
+
+                    <td class="myorder-table_td1" style="font-size:16px;">购买时间</td>
+
+                </tr>
+                </tbody>
+            </table>         
+          
+                <table cellspacing="0" cellpadding="0" border="0" class="member_myorder-table" style="margin-left:-100px;">
+                    {foreach $list as $v}
+                     <tbody><tr class="member_myorder-table-sec">
+
+                        <td class="myorder-table-sec_td1" colspan="4" style="font-size:14px; background-color: #e13942; color:white;">订单号：{$v.bianhao}</td>
+                            <td class="myorder-table-sec_td2" colspan="1" ></td>
+                             </tr>
+                                <tr class="member_myorder-table-third">
+                                    <td class="myorder-table_td1"><img width="55" height="55" src="/public/image/{$v.img}" title='让图片飞一会'></td>
+                                   <td class="myorder-table_td1" >
+                                
+                                        <div class="myorder-table-third-cp" >
+                        
+
+                                            <span style="font-size:14px;">{$v.name} </span>
+                                            <div style="font-size:14px; color:red;"> {$v.xinghao}  ￥{$v.price}*{$v.num}</div>
+                                                
+                                           
+                                        </div>
+                                    
+                                    </td>
+                                    
+                                    <td style="font-family:微软雅黑; font-size:16px;" class="myorder-table_td1">
+                                        ￥{$v.price*$v.num}  
+                                        </td>
+                                    <td class="myorder-table_td1" colspan="1"  style="font-size:16px;">
+                                        {$v.addtime}</td>
+                                    
+                                    
+
+                               </tr>
+                                                
+                                    
+                         </tbody>
+                         {/foreach}
+                         </table>
+                                            
+                         <div><span><br></span></div>
+                         <span class="write_vtop"><h3>我要评价：</h3></span> 
+                         <div><span><br></span></div>
+
+                         <form method="post" action="{:url('Dingdan/content')}?uid={$v.id}">
+                             <input type="radio" name="ping" id='ping' value='好评'><label style="font-size:16px;" for='ping'>&nbsp;&nbsp;<a>好评</a>&nbsp;&nbsp;</label>
+                             <input type="radio" name="ping" id='ping2' value="中评"><label style="font-size:16px;" for='ping2'>&nbsp;&nbsp;<a>中评</a>&nbsp;&nbsp;</label>
+                             <input type="radio" name="ping" id='ping3' value="差评"><label style="font-size:16px;" for='ping3'>&nbsp;&nbsp;<a>差评</a>&nbsp;&nbsp;</label>
+
+                             <div><span><br></span></div>
+                             <textarea id="street" cols="85" rows="10" name="pingjia" style="font-size:16px; text-indent:20px;" ></textarea> 
+                             <span id="streid" style="display: none"><i class="writer_wrong"></i><em id="strewrong" class="writer_word"></em></span>
+                             <span id="strey" style="display: none"><i class="writer_right"> </i></span> 
+                            </div>         
+                            
+                            <div><span><br></span></div>
+
+                            <div id="btnsave" class="" style="margin-left: 500px ; margin-top: 10px;">
+                               <!-- 保存 -->
+                               <input type="submit" style="border-style:None; background-color: #e13942" class="bt1 person-cort_left-button"   value="提  交" name="ctl00$content$btnsubmit">
+                               <a href="{:url('Dingdan/pingjia')}" class='bt1 person-cort_left-button' style="border-style:None; background-color: #d6b870; color:white;">返  回</a>
+                            </div> 
+                        </form>
+
+                </div>
+                </div>
+
+                        <!-- <div class="pages">
+                            <a class="page prev" href="">上一页</a>
+                            <a class="page" href="">1</a>
+                            <span class="cur-page">2</span>
+                            <a class="page" href="">3</a>
+                            <a class="page" href="">4</a>
+                            <i class="page-split">...</i>
+                            <a class="page" href="">71</a>
+                            <a class="page next" href="">下一页</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!--脚部-->
+    <div class="footer" style="margin-top: 70px;">安徽XXX网络科技有限公司 版权所有 Copyright © 2016-2018   备案号：皖ICP备123456789</div>
+    <!--脚部-->
+    <div class="fatfooter">
+
+    </div>
+    <!--脚部-->
+</body>
+<script src="/public/static/index/js/jquery.js"></script>
+<link rel="stylesheet" href="/public/static/index/js/icheck/style.css"/>
+<script src="/public/static/index/js/icheck/icheck.min.js"></script>
+<script src="/public/static/index/js/global.js"></script>
+<script>
+
+</script>
+</html>

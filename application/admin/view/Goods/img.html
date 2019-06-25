@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="/public/image/{$data.img}" alt="">
+	{foreach $list as $v}
+	<img src="/public/img/{$v.picname}" alt="">
+	{/foreach}
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>找回密码</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/public/static/index/css/iconfont/iconfont.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/common.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/login.css" rel="stylesheet"/>
+</head>
+<body>
+<!--头部-->
+    <div class="login-header">
+        <div class="wrapper">
+            <a href="" class="logo">
+                <img src="/public/static/index/img/logo3.png" alt="" />
+            </a>
+            <div class="zp">
+                <span class="ico"></span>
+                <div>正品保障</div>
+            </div>
+        </div>
+    </div>
+    <div class="main-wrap">
+        <div class="wrapper">
+            <div class="center-box ">
+
+                <div class="box-hd box-hd-tabs">
+                    <a href="javascript:;" class="item">手机找回密码</a>
+                    
+                </div>
+                <div class="tab-con">
+                    <form action="{:url('Login/wangji')}" method="post">
+                         <label class="txtin-box">
+                            <input class="txtin" type="text" id="rename" name="getname" placeholder="用户名" />
+                            <span id="cid"></span>
+                        </label>
+                        <label class="txtin-box">
+                            <input class="txtin" type="password" id="pass" name="password" placeholder="新密码" />
+                            <span id="pid"></span>
+                        </label>
+                        <label class="txtin-box">
+                            <input class="txtin" type="text" id="pho" name="phone" placeholder="手机" />
+                            <span id="spanph"></span>
+                        </label>
+                        <label class="txtin-box txtin-box-code">
+                            <input class="txtin" type="text" name="code" placeholder="短信验证码" />
+                            <a id="but" class="get-yzm">获取验证码</a>
+                        </label>
+                        <!-- <label class="txtin-box txtin-box-code">
+                            <input class="txtin" type="text" name="" placeholder="验证码" />
+                            <img class="yzm" src="/public/static/index/" alt="" />
+                        </label> -->
+                        <button class="tj" >修&ensp;改</button>
+                        <!-- <input class="tj" type="submit" value="完&ensp;成" /> -->
+                    </form>
+                </div>
+                <!-- <div class="tab-con">
+                    <form action="" method="">
+                        <label class="txtin-box">
+                            <input class="txtin" type="text" name="" placeholder="手机" />
+                        </label>
+                        <label class="txtin-box txtin-box-code">
+                            <input class="txtin" type="text" name="" placeholder="验证码" />
+                            <img class="yzm" src="/public/static/index/" alt="" />
+                        </label>
+                        <input class="tj" type="submit" value="完&ensp;成" />
+                    </form>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="login-footer">
+        安徽智迈科技股份有限公司 版权所有 Copyright © 2009-2016 法律顾问：吕海波律师  备案号：皖ICP备06001897
+        <div class="authentication">
+            <a href=""><img src="/public/static/index/uploads/35.jpg" alt="" /></a>
+            <a href=""><img src="/public/static/index/uploads/36.jpg" alt="" /></a>
+            <a href=""><img src="/public/static/index/uploads/37.jpg" alt="" /></a>
+            <a href=""><img src="/public/static/index/uploads/38.jpg" alt="" /></a>
+        </div>
+    </div>
+</body>
+<script src="/public/static/index/js/jquery-1.8.3.min.js"></script>
+<script src="/public/static/index/js/jquery.js"></script>
+<link rel="stylesheet" href="/public/static/index/js/icheck/style.css"/>
+<script src="/public/static/index/js/icheck/icheck.min.js"></script>
+<script src="/public/static/index/js/global.js"></script>
+<script>
+     $(function () {
+        $('.center-box').zTab({
+            tabnav:'.box-hd-tabs',
+            trigger:'click'
+        });
+     });
+
+    $("#pass").focus(function(){
+        $("#pid").html("");
+        $("#pid").html("请输入6-16位的密码").css("color","red");
+
+    }).blur(function(){
+        var pass=$("#pass").val();
+
+        if(pass == ""){
+            $("#pid").html("密码不能为空").css("color","red");
+        }else if(pass.length>=6 && pass.length<=16){
+            $("#pid").html("密码格式正确").css("color","green");
+        }else{
+            $("#pid").html("请输入6到16位").css("color","red");
+        }
+       
+       
+    });
+
+
+     $("#pho").focus(function(){
+        $("#spanph").html("");
+        
+        $("#spanph").html("请输入11位有效手机号码").css("color","red");
+
+    }).blur(function(){
+        var phone=$("#pho").val();
+        if(phone.match(/^[1][34578]\d{9}$/)==null){
+            $("#spanph").html("无效手机号").css("color","red");
+            
+        }else{
+            $("#spanph").html("手机号有效").css("color","green"); 
+        }
+    });
+
+
+
+     $("#but").click(function(){
+        var phone=$("#pho").val();
+        $.ajax({
+            type:"post",
+            url:"{:url('Login/fasong')}",
+            data:{phone:phone},
+            success:function(data){
+                if(data == 1){
+                    alert("发送成功,请等待...")
+                }
+            }
+        });
+
+    });
+
+
+
+
+    $("input[name='getname']").focus(function(){
+        $("#cid").html("");
+       
+        $("#cid").html("请输入你的用户名").css("color","red");
+        
+    }).blur(function(){
+        
+        var name=$("input[name='getname']").val();
+        if(name.match(/^\w{6,12}$/)==null){
+            $("#cid").html("用户名为6-12位字母数字下划线");
+
+        }else{
+            $.ajax({
+            type:"get",
+            url:"{:url('Login/zhuce')}",
+            data:{name:name},
+            async:true,
+            dataType:"html",
+            success:function(data){
+                
+                if(data == 0){
+                    $("#cid").html("用户名存在").css("color","green");
+                    
+                }else{
+                    $("#cid").html("用户名不存在,请注册").css("color","red"); 
+                }
+            }
+
+            });
+        }
+    });
+</script>
+</html>

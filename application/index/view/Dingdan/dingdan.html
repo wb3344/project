@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>订单</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/public/static/index/css/iconfont/iconfont.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/common.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/uc.css" rel="stylesheet"/>
+
+    <script src="/public/static/index/js/jquery.js"></script>
+    <link rel="stylesheet" href="/public/static/index/js/icheck/style.css"/>
+    <script src="/public/static/index/js/icheck/icheck.min.js"></script>
+    <script src="/public/static/index/js/global.js"></script>
+</head>
+<body>
+    <!--头部-->
+    <div class="topper">
+        <div class="wrapper">
+            <div class="left-bar">
+                <div class="back-home divider">
+                    <em></em><a href="{:url('Index/index')}">商城首页</a>
+                </div>
+                <div class="item"><a href="">商家中心</a></div>
+            </div>
+            <div class="right-bar">
+                <!-- <div class="login-user sub-menu">
+                    <a class="menu-hd" href="">txtangxia<em></em></a>
+                    <div class="down">
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                    </div>
+                </div>
+                <div class="item"><a href="">消息（<span class="txt-theme">0</span>）</a></div>
+                <div class="logout divider"><a href="">退出</a></div> -->
+                {if $user != ''}
+                     <div class="item"><a href="javascript:;">{$user}<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('Dingdan/tuichu')}">退出</a></div>
+                    {else}
+                        <div class="item"><a href="{:url('Login/index')}">登陆<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('Login/register')}">注册</a></div>
+                {/if}
+                
+                <span class=""></span>
+                <div class="cart"><em></em><a href="{:url('GoodsCart/index')}">购物车<span class="txt-theme"></span></a></div>
+                <div class="order"><em></em><a href="{:url('Dingdan/dingdan')}">我的订单</a></div>
+                <div class="fav"><em></em><a href="{:url('Footprint/fav')}">我的收藏</a></div>
+                <div class="help"><em></em><a href="">帮助中心</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="uc-header-bg">
+        <div class="uc-header wrapper">
+            <a class="logo" href="{:url('Index/index')}"><img src="/public/static/index/img/logo2.png" alt="" /></a>
+            <div class="back-home"><a href="{:url('Index/index')}">返回商城首页</a></div>
+            <ul class="uc-nav">
+                <li><a href="{:url('Index/index')}">首页</a></li>
+                <li class="toggle">
+                    <span class="label">账户设置<i class="iconfont"></i></span>
+                    <div class="toggle-cont">
+                        <a href="{:url('Account/account')}">个人信息</a>
+                        <a href="{:url('Account/security')}">安全设置</a>
+                        <a href="">收货地址</a>
+                    </div>
+                </li>
+                <li><a href="">消息中心</a></li>
+            </ul>
+            <div class="schbox">
+               <!--  <form action="">
+                    <input class="search-txt" type="text" />
+                    <button class="search-btn">搜索</button>
+                    <div class="suggest-box">
+                        <div class="item" data-title="上衣 短款 短袖">上衣 短款 短袖<div class="tags"><span>雪纺</span><span>蕾丝</span><span>一字领</span></div></div>
+                    </div>
+                </form> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper uc-router">
+        <ul>
+            <li><a href="{:url('Index/index')}">首页</a></li>
+            <li><span class="divider"></span></li>
+            <li><span>个人中心</span></li>
+        </ul>
+    </div>
+    <div class="wrapper">
+        <div class="uc-main clearfix">
+            <div class="uc-aside">
+                <div class="uc-menu">
+                    <div class="tit">订单中心</div>
+                    <ul class="sublist">
+                        <li><a class="active" href="{:url('Dingdan/dingdan')}">我的订单</a></li>
+                        <li><a href="{:url('Footprint/fav')}">我的收藏</a></li>
+                        <li><a href="{:url('Footprint/footprint')}">浏览历史</a></li>
+                    </ul>
+                    <div class="tit">客户服务</div>
+                    <ul class="sublist">
+                        <li><a href="">技术支持</a></li>
+                        <!-- <li><a href="">退款/退货</a></li> -->
+                    </ul>
+                    <div class="tit">账户中心</div>
+                    <ul class="sublist">
+                        <li><a href="{:url('Account/account')}">账户信息</a></li>
+                        <li><a href="{:url('Account/security')}">账户安全</a></li>
+                        <!-- <li><a href="">消费记录</a></li>
+                        <li><a href="">收货地址</a></li> -->
+                    </ul>
+                    <div class="tit">消息中心</div>
+                    <ul class="sublist">
+                        <li><a href="{:url('Dingdan/pingjia')}">商品评价</a></li>
+                        <!-- <li><a href="">站内消息</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="uc-content">
+                <div class="uc-panel">
+                    <div class="uc-bigtit">我的订单</div>
+                    <div class="uc-search" style="margin-top:-55px;">
+                       <!--  <form action="{:url('Dingdan/sou')}" method="post">
+                            <input type="text" class="sch-input" placeholder="输入订单号" name='hao'/>
+                            <button class="sch-btn"><i class="iconfont icon-search"></i></button>
+                        </form> -->
+                     </div>
+                    <div class="uc-panel-bd">
+                        <div class="uc-sort">
+                            <!-- <div class="uc-tabs">
+                                <a class="item active" href="">所有订单</a>
+                                <a class="item" href="">代付款（1）</a>
+                                <a class="item" href="">待发货</a>
+                                <a class="item" href="">待收货</a>
+                                <a class="item" href="">待评价</a>
+                            </div> -->
+                            
+                        </div>
+                        <table class="uc-table">
+                            <thead>
+                                {if !empty($mafan)}
+                                <th><div style="margin-left:-370px; font-size: 16px;">订单商品</div></th>
+
+                                <th><div style="margin-left:-680px; font-size: 16px;">订单总价</div></th>
+                                <th><div style="margin-left:-320px; font-size: 16px;">订单状态</div></th>
+                                <th width="120" style="font-size: 16px;">操作</th>
+                                {/if}
+                                {if $mafan==null}
+                                <th><div style="font-size: 16px;">订单商品</div></th>
+
+                                <th><div style="font-size: 16px;">订单总价</div></th>
+                                <th><div style="font-size: 16px;">订单状态</div></th>
+                                <th width="120" style="font-size: 16px;">操作</th>
+                                {/if}
+                                
+                            </thead>
+                            {foreach $list as $v}
+                            <tr class="hd order-meta">
+                                <td colspan="4">
+                                    <div class="left">{$v.addtime}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;订单号: {$v.bianhao}</div>
+                                    <!-- <div class="right">店铺：<a href="">小米旗舰店</a> <span class="del iconfont icon-shanchu"></span></div> -->
+                                </td>
+                            </tr> 
+                            <tr class="order-goods">
+                                <td>
+                                    <div class="goods-info">
+                                        <img class="figure" src="/public/image/{$v.img}" alt="让图片飞一会儿" />
+                                        <span class="text-info refund" style="color:#666; font-weight:bold; font-size:16px;">￥{$v.num*$v.price}</span>
+                                        <div class="info">
+                                            <div>{$v.name} </div><dvi style="color:red; font-weight:bold;">{$v.xinghao}&nbsp;&nbsp;&nbsp;￥{$v.price}*{$v.num}</div>
+                                            <!-- <div>499元×1</div> -->
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {if $v.status=='1'}
+                                        <div style="margin-left:-250px;"><span class="text-theme fwb" style="color:orange;">已提交，等待发货</span><br>
+                                    {elseif $v.status=='2'}
+                                        <div style="margin-left:-250px;"><span class="text-theme fwb"><a href="{:url('Dingdan/zhuang')}?id={$v.id}&status={$v.status}" style="color:red;">已发货,确认收货</a></span><br>
+                                    {elseif $v.status=='3'}
+                                        <div style="margin-left:-250px;"><span class="text-theme fwb"><a href="{:url('Dingdan/zhuang')}?id={$v.id}&status={$v.status}" style="color:red;">已收货,待评价</a></span><br>
+                                    {elseif $v.status=='4'}
+                                        <div style="margin-left:-250px;"><span class="text-theme fwb" style="color:#666;">订单已完成</span><br>
+                                    {elseif $v.status=='5'}
+                                        <div style="margin-left:-250px;"><span class="text-theme fwb" style="color:#666;">订单已完成</span><br>
+                                    {/if}
+                                    <a class="text-info" href="{:url('Dingdan/xiangqing')}?id={$v.id}">订单详情</a>
+                                    </div>
+                                    
+                                </td>
+                                <td>
+                                    <!-- <span class="status">快件已签收</span><br /> -->
+                                    <!-- <a class="text-info" href="uc-order-detail.html">订单详情</a><br /> -->
+                                    <!-- <a class="text-info" href="">查看物流</a> -->
+                                </td>
+                                <td >
+                                    <!-- <a href="" class="ui-btn-theme uc-btn-md">去付款</a> -->
+                                    <a id="quxiao{$v.id}" class="ui-btn-low ui-btn-hollow uc-btn-md mt10">取消订单</a>
+                                </td>
+                            </tr>
+                            <script type="text/javascript">
+                                $('#quxiao{$v.id}').click(function(){
+
+                                    $.ajax({
+                                        type:"post",    //提交方式
+                                        url:"{:url('Dingdan/quxiao')}",    //提交地址
+                                        data:{id:"{$v.id}"}, //要提交的数据
+                                        async:true,     //是否异步
+                                        dataType:"html",    //响应的数据格式
+                                        success:function(){     //如果返回数据成功要做的处理
+                                            alert('取消订单成功，如已发货，请在收到货的同时将货退回，届时我们将返回购物所需费用！');
+                                            location="";
+                                        },
+                                        error:function(){   //失败时执行的回调函数
+                                            alert("取消订单失败!");
+                                        }
+                                    });
+                                });
+                            </script>
+                        {/foreach}
+                        </table>
+                        {$list|raw}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!--脚部-->
+    <div class="footer">安徽XXX网络科技有限公司 版权所有 Copyright © 2016-2018   备案号：皖ICP备123456789</div>
+    <!--脚部-->
+    <div class="fatfooter">
+
+    </div>
+    <!--脚部-->
+</body>
+
+
+</html>

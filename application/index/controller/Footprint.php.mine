@@ -1,0 +1,56 @@
+<?php
+
+namespace app\index\controller;
+
+use Config;
+use think\Controller;
+use think\facade\Session;
+
+class Footprint extends Controller{
+	public function footprint(){
+		$user=session('username');
+        $this->assign('user',$user);
+		$fun=db('lishi')->where('uname',session('username'))->order('id','desc')->paginate(3);
+		$this->assign("fun",$fun);
+		return view();
+	}
+
+
+	public function fav(){
+		if(session("username") != ''){
+			$fun=db('user')->where('username',session('username'))->find();
+			$action=db('collection')->where('uid',$fun['id'])->order('id','desc')->paginate(3);
+			// echo "<pre>";
+			// print_r($action);
+		    $this->assign("action",$action);
+
+
+
+
+		    $user=session('username');
+		    $this->assign('user',$user);
+			return view();
+		}else{
+			$this->redirect('Login/index'); 
+		}
+		
+	} 
+	public function del(){
+		$m=db("collection")->where("id",$_POST['id'])->delete();
+		if($m > 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+
+	public function delete(){
+		$m=db("lishi")->where("id",$_POST['id'])->delete();
+		if($m > 0){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+}

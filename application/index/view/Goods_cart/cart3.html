@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>支付</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/public/static/index/css/iconfont/iconfont.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/common.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/cart.css" rel="stylesheet"/>
+</head>
+<body class="graybg-theme">
+    <!--头部-->
+        <div class="topper">
+            <div class="wrapper">
+                <div class="left-bar">
+                    <div class="back-home divider">
+                        <em></em><a href="{:url('Index/index')}">商城首页</a>
+                    </div>
+                    <div class="item"><a href="">商家中心</a></div>
+                </div>
+                <div class="right-bar">
+                   <!--  <div class="login-user sub-menu">
+                        <a class="menu-hd" href="">txtangxia<em></em></a>
+                        <div class="down">
+                            <a href="">内容</a>
+                            <a href="">内容</a>
+                            <a href="">内容</a>
+                        </div>
+                    </div>
+                    <div class="item"><a href="">消息（<span class="txt-theme">0</span>）</a></div>
+                    <div class="logout divider"><a href="">退出</a></div> -->
+
+                    {if $user != ''}
+                     <div class="item"><a href="javascript:;">{$user}<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('GoodsCart/tuichu')}">退出</a></div>
+                    {else}
+                        <div class="item"><a href="{:url('Login/index')}">登陆<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('Login/register')}">注册</a></div>
+                    {/if}
+
+                    <span class=""></span>
+                    <div class="cart"><em></em><a href="">购物车<span class="txt-theme"></span></a></div>
+                    <div class="order"><em></em><a href="{:url('Dingdan/dingdan')}">我的订单</a></div>
+                    <div class="fav"><em></em><a href="{:url('Footprint/fav')}">我的收藏</a></div>
+                    <div class="help"><em></em><a href="">帮助中心</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-header wrapper">
+            <div class="logo">
+                <a href="{:url('Index/index')}"><img src="/public/static/index/img/logo.png" alt="logo" /></a>
+            </div>
+            <div class="step-box">
+                <div class="row">
+                    <div class="step first active col-3">
+                        <span class="num">1</span><span class="line"></span><span class="label">我的购物</span>
+                    </div>
+                    <div class="step active col-3">
+                        <span class="num">2</span><span class="line"></span><span class="label">确认订单信息</span>
+                    </div>
+                    <div class="step active col-3">
+                        <span class="num">3</span><span class="line"></span><span class="label">选择支付方式</span>
+                    </div>
+                    <div class="step last1 col-3">
+                        <span class="num">4</span><span class="line"></span><span class="label">完成付款</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--头部-->
+
+    <div class="wrapper">
+        <div class="pay-wrap">
+            <div class="order-result">
+                <div class="section clearfix"  style="margin-top:0px; margin-left: 250px;">
+                    <img src="/public/static/index/img/ico/order-success.jpg" class="ico" />
+                    <div class="titbox">
+                        {foreach $list as $v}
+                            <input type="hidden" value="{$zong+=$v.num*$v.price}">
+                        {/foreach}
+                        <div class="tit">订单提交成功，应付总金额 {$zong}.00 元</div>
+                        {foreach $list as $va}
+                        <div class="stit">订单号：{$va.bianhao}    请您在 24小时 内完成支付，否则订单会被自动取消</div>
+                        {/foreach}
+                    </div>
+                    
+                     <div class="mt20">
+                        <div class="meta">
+                            <div class="hd"><br></div>
+                            <div class="bd"><br></div>
+                        </div>
+                        <div class="meta">
+                            <div class="hd"><br></div>
+                            <div class="bd"><br></div>
+                        </div>
+                    </div>
+                <form action="{:url('GoodsCart/cart4')}" method="post">
+                   <div class="pay-way">
+
+                     <div class="row">
+                        <div class="col col-3" style="margin-top:-20px; margin-left: 20px;">
+                            <label><input class="check" type="radio" name="a" value="abc" /><img src="/public/static/index/img/pay/zfb.jpg" /></label>
+                        </div>
+                        <div class="col col-3" style="margin-top:-20px; margin-left: 60px;">
+                            <label><input class="check" type="radio" name="a" value="abc" /><img src="/public/static/index/img/pay/weixin.jpg" /></label>
+                            <br><br>
+                        </div>
+                     </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-panel">
+            <!-- <a href="{:url('GoodsCart/cart4')}" class="go-next ui-btn-theme">确认付款</a> -->
+            <input type="submit" value="确认付款" class="go-next ui-btn-theme">
+        </div>
+        </form>
+    </div>
+<div class="footer">安徽XXX网络科技有限公司 版权所有 Copyright © 2016-2018   备案号：皖ICP备123456789</div>
+    <!--脚部-->
+    <div class="fatfooter">
+
+    </div>
+    <!--脚部-->
+</body>
+<script src="/public/static/index/js/jquery.js"></script>
+<link rel="stylesheet" href="/public/static/index/js/icheck/style.css"/>
+<script src="/public/static/index/js/icheck/icheck.min.js"></script>
+<script src="/public/static/index/js/global.js"></script>
+<script>
+    $('.check').iCheck({
+            radioClass: 'sty1-radio'
+    });
+</script>
+</html>

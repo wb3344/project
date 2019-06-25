@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>个人信息</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/public/static/index/css/iconfont/iconfont.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/common.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/uc.css" rel="stylesheet"/>
+    <style>
+        .fileinput-button {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            }
+        .fileinput-button input{
+            position:absolute;
+            right: 0px;
+            top: 0px;
+            opacity: 0;
+            -ms-filter: 'alpha(opacity=0)';
+            font-size: 400px;
+        }
+    </style>
+    <link rel="stylesheet" href="/public/static/index/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/static/index/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/public/static/index/layer/mobile/need/layer.css">
+</head>
+<body>
+    <!--头部-->
+    <div class="topper">
+        <div class="wrapper">
+            <div class="left-bar">
+                <div class="back-home divider">
+                    <em></em><a href="index.html">商城首页</a>
+                </div>
+                <div class="item"><a href="">商家中心</a></div>
+            </div>
+            <div class="right-bar">
+                <div class="login-user sub-menu">
+                    <a class="menu-hd" href="">txtangxia<em></em></a>
+                    <div class="down">
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                        <a href="">内容</a>
+                    </div>
+                </div>
+                {if $list != ''}
+                 <div class="item"><a href="javascript:;">{$list}<span class="txt-theme"></span></a></div>
+                <div class="logout divider"><a href="{:url('Account/tuichu')}">退出</a></div>
+                {else}
+                    <div class="item"><a href="{:url('Login/index')}">登陆<span class="txt-theme"></span></a></div>
+                <div class="logout divider"><a href="{:url('Login/register')}">注册</a></div>
+                {/if}
+                <span class=""></span>
+                <div class="cart"><em></em><a href="">购物车<span class="txt-theme">2</span>件</a></div>
+                <div class="order"><em></em><a href="{:url('Dingdan/dingdan')}">我的订单</a></div>
+                <div class="fav"><em></em><a href="">我的收藏</a></div>
+                <div class="help"><em></em><a href="">帮助中心</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="uc-header-bg">
+        <div class="uc-header wrapper">
+            <a class="logo" href="index.html"><img src="/public/static/index/img/logo2.png" alt="" /></a>
+            <div class="back-home"><a href="">返回商城首页</a></div>
+            <ul class="uc-nav">
+                <li><a href="">首页</a></li>
+                <li class="toggle">
+                    <span class="label">账户设置<i class="iconfont"></i></span>
+                    <div class="toggle-cont">
+                        <a href="">个人信息</a>
+                        <a href="">安全设置</a>
+                        <a href="">收货地址</a>
+                    </div>
+                </li>
+                <li><a href="">消息中心</a></li>
+            </ul>
+            <div class="schbox">
+                <form action="">
+                    <input class="search-txt" type="text" />
+                    <button class="search-btn">搜索</button>
+                    <div class="suggest-box">
+                        <div class="item" data-title="上衣 短款 短袖">上衣 短款 短袖<div class="tags"><span>雪纺</span><span>蕾丝</span><span>一字领</span></div></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper uc-router">
+        <ul>
+            <li><a href="">首页</a></li>
+            <li><span class="divider"></span></li>
+            <li><span>个人中心</span></li>
+        </ul>
+    </div>
+
+    <div class="wrapper">
+        <div class="uc-main clearfix">
+            <div class="uc-aside">
+                <div class="uc-menu">
+                    <div class="tit">订单中心</div>
+                    <ul class="sublist">
+                        <li><a href="{:url('Dingdan/dingdan')}">我的订单</a></li>
+                        <li><a href="{:url('Footprint/fav')}">我的收藏</a></li>
+                        <li><a href="">浏览历史</a></li>
+                    </ul>
+                    <div class="tit">客户服务</div>
+                    <ul class="sublist">
+                        <li><a href="">取消订单记录</a></li>
+                        <li><a href="">退款/退货</a></li>
+                    </ul>
+                    <div class="tit">账户中心</div>
+                    <ul class="sublist">
+                        <li><a href="{:url('Account/account')}">账户信息</a></li>
+                        <li><a href="{:url('Account/security')}">账户安全</a></li>
+                        
+                    </ul>
+                    <div class="tit">消息中心</div>
+                    <ul class="sublist">
+                        <li><a href="{:url('Dingdan/pingjia')}">商品评价</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <form action="{:url('Account/people')}" method="post" enctype="multipart/form-data">
+            <div class="uc-content">
+                <div class="uc-panel">
+                    <div class="uc-bigtit">个人信息</div>   
+                    <div class="uc-panel-bd">
+                        <div class="account-info clearfix">
+                            <div class="col-headpic">
+                                <div class="pic-wrap">
+                                    <div class="label">头像</div>
+                                    <div class="picbox">
+                                    {if $arr.image != ''}
+                                        <img src="/public/uploads/s_{$arr.image}" alt="" />
+                                    {else}
+                                        <img class="topimg" src="/public/static/index/img/uc/headpic.jpg" alt="" />
+                                    {/if}
+                                    </div>
+                                    <span class="btn btn-success fileinput-button" style="width: 120px;">
+                                        <span>更换头像</span>
+                                        <input type="file" id="imgInput" multiple="multiple" name="pic">
+                                    </span>
+                                    <!-- <input type="file" name="pic" title="更换头像">修改头像 -->
+                                </div>
+                            </div>
+                            <div class="col-userinfo">
+                                <div class="control-group">
+                                    <div class="hd">真实姓名：</div>
+                                    <div class="bd"><input class="ui-txtin" name="name" type="text" value="{$arr.name}" /></div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="hd">昵称：</div>
+                                    <div class="bd"><input class="ui-txtin" readonly type="text" name="username" value="{$arr.username}" /></div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="hd">生日：</div>
+                                    <div class="bd"><input class="ui-txtin" type="text" value="{$arr.birthday}" name="birthday" id="birthday" /></div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="hd">性别：</div>
+                                    <div class="bd">
+                                        <label class="check"><input type="radio" name="sex" {if $arr.sex=='m'}checked{/if} value="m" />男</label>
+                                        <label class="check ml25"><input type="radio" name="sex" {if $arr.sex=='w'}checked{/if} value="w" />女</label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="hd">电话：</div>
+                                    <div class="bd"><input class="ui-txtin" value="{$arr.phone}" type="text" name="phone"  /></div>
+                                </div>
+                               <!--  <div class="control-group">
+                                    <div class="hd">所在地：</div>
+                                    <div class="bd">
+                                        <select name=""class="ui-txtin" style="width: 100px;"></select>
+                                    </div>
+                                </div> -->
+                                <div class="control-group">
+                                    <div class="hd">详细地址：</div>
+                                    <div class="bd"><input class="ui-txtin" type="text" value="{$arr.address}" name="address"  /></div>
+                                </div>
+                                <!-- <div class="control-group">
+                                    <div class="hd">邮箱：</div>
+                                    <div class="bd">
+                                        <div class="text-black">12345677899@qq.com <a class="edit-btn" href="">修改</a></div>
+                                    </div>
+                                </div> -->
+                                <div class="control-submit">
+                                    <input class="ui-btn-theme submit" type="submit" value="确认" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    <!--脚部-->
+    <div class="fatfooter">
+
+    </div>
+    <!--脚部-->
+</body>
+<script src="/public/static/index/js/jquery.js"></script>
+<link rel="stylesheet" href="/public/static/index/js/icheck/style.css"/>
+<script src="/public/static/index/js/icheck/icheck.min.js"></script>
+<script src="/public/static/index/js/laydate/laydate.js"></script>
+<script src="/public/static/index/js/layer/layer.js"></script>
+<script src="/public/static/index/js/global.js"></script>
+<script>
+$(function () {
+     $('.check').iCheck({
+            radioClass: 'sty2-radio'
+    });
+
+     laydate({
+        elem: '#birthday',
+        format: 'YYYY/MM',
+        festival: true
+    });
+});
+</script>
+</html>

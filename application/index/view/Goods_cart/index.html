@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>购物车</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="/public/static/index/css/iconfont/iconfont.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/common.css" rel="stylesheet"/>
+    <link href="/public/static/index/css/cart.css" rel="stylesheet"/>
+</head>
+<body class="graybg-theme">
+    <!--头部-->
+        <div class="topper">
+            <div class="wrapper">
+                <div class="left-bar">
+                    <div class="back-home divider">
+                        <em></em><a href="{:url('Index/index')}">商城首页</a>
+                    </div>
+                    <div class="item"><a href="">商家中心</a></div>
+                </div>
+                <div class="right-bar">
+                    <!-- <div class="login-user sub-menu">
+                        <a class="menu-hd" href="">txtangxia<em></em></a>
+                        <div class="down">
+                            <a href="">内容</a>
+                            <a href="">内容</a>
+                            <a href="">内容</a>
+                        </div>
+                    </div> -->
+                    {if $user != ''}
+                     <div class="item"><a href="javascript:;">{$user}<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('GoodsCart/tuichu')}?">退出</a></div>
+                    {else}
+                        <div class="item"><a href="{:url('Login/index')}">登陆<span class="txt-theme"></span></a></div>
+                    <div class="logout divider"><a href="{:url('Login/register')}">注册</a></div>
+                    {/if}
+
+                   <!--  <div class="item"><a href="">消息（<span class="txt-theme">0</span>）</a></div>
+                    <div class="logout divider"><a href="">退出</a></div>-->
+
+                    <span class=""></span> 
+
+                    <div class="cart"><em></em><a href="">购物车<span class="txt-theme"></span></a></div>
+                    <div class="order"><em></em><a href="{:url('Dingdan/dingdan')}">我的订单</a></div>
+                    <div class="fav"><em></em><a href="">我的收藏</a></div>
+                    <div class="help"><em></em><a href="">帮助中心</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-header wrapper">
+            <div class="logo">
+                <a href="{:url('Index/index')}"><img src="/public/static/index/img/logo.png" alt="logo" /></a>
+            </div>
+            <div class="step-box">
+                <div class="row">
+                    <div class="step first active col-3">
+                        <span class="num">1</span><span class="line"></span><span class="label">我的购物车</span>
+                    </div>
+                    <div class="step col-3">
+                        <span class="num">2</span><span class="line"></span><span class="label">确认订单信息</span>
+                    </div>
+                    <div class="step col-3">
+                        <span class="num">3</span><span class="line"></span><span class="label">选择支付方式</span>
+                    </div>
+                    <div class="step last1 col-3">
+                        <span class="num">4</span><span class="line"></span><span class="label">完成付款</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--头部-->
+    <div class="wrapper">
+
+        <table class="cart-table">
+            <thead>
+                <tr class="hd">
+                    <!-- <th width="30px" class="first"><label class="check"><input id="checkall" type="checkbox" name="all" /><span>全选</span></label></th> -->
+                    <th width="430px">商品名称</th>
+                    <th width="180px">单价</th>
+                    <th width="190px">数量</th>
+                    <th width="180px">小计</th>
+                    <th width="190px">操作</th>
+                </tr>
+            </thead>
+          
+            {foreach $list as $v}
+            <tbody>
+                <tr class="blank">
+                    <td colspan="6"></td>
+                </tr>
+                <tr class="shop">
+                    <td colspan="6" class="first">
+                        <span>店铺：潮装旗舰店</span>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr class="goods">
+                    
+                    <td>
+                        <div class="info-box">
+                            <img src="/public/image/{$v.img}" alt="">
+                            <div class="info">
+                                <div class="name">{$v.name}</div>
+                                <div class="meta"><span>{$v.xinghao}</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="font-size:18px;">￥<span class="unitprice" style="font-size:18px;">{$v.price}</span></td>
+                    <td>
+                        <div>
+                           <!--  <span class="count-minus"></span>
+                            <input class="count-input" value="1"  type="text" name="num" />
+                            <span class="count-plus"></span> -->
+                            <span class="count-input" style="font-size:18px;">{$v.num}</span>
+                        </div>
+                    </td>
+                    <td class="txt-error" style="font-size:18px;">￥<span style="font-size:18px;" class="zong">{$v.price*$v.num}</span></td>
+                   
+                    <td><a href="{:url('GoodsCart/index')}?id={$v.id}" class="del iconfont icon-shanchu"></a></td>
+                </tr>
+              <span style="color:#f4f4f4; cursor:default;">{$zong+=$v.price*$v.num} </span>
+            </tbody> 
+            {/foreach}
+        </table>
+        <div class="cart-total-box">
+            <div class="cart-total">
+                <div class="fl">
+                    <div class="back"><a href="{:url('SearchGoods/index')}">继续购物</a></div><div class="count"> <span class="num"></span>   <span class="num"></span> </div>
+                </div>
+                <div class="fr">
+                    <div class="price">
+                        合计（不含运费）：<span id="totalMoney">{$zong}</span>元
+
+                    </div>
+
+                    <a class="go-account ui-btn-theme" href="{:url('GoodsCart/cart2')}?zong={$zong}">去结算</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+    <!--脚部-->
+    <div class="footer" style="margin-top: 70px;">安徽XXX网络科技有限公司 版权所有 Copyright © 2016-2018   备案号：皖ICP备123456789</div>
+</body>
+<script src="/public/static/index/js/jquery.js"></script>
+<link rel="stylesheet" href="/public/static/index/js/icheck/style.css"/>
+<script src="/public/static/index/js/icheck/icheck.min.js"></script>
+<script src="/public/static/index/js/global.js"></script>
+<!--  <script>
+    /*商品数量操作*/
+    function goodsCount(o){
+            if(!(o instanceof Object)) var o={};
+            var inputCell = o.inputCell || ".count-input",
+                minusCell = o.minusCell || ".count-minus",
+                plusCell = o.plusCell || ".count-plus",
+                disClass = o.disClass || "disabled";
+            return this.each(function(){
+                var $wrap = $(this),
+                    $input = $(inputCell,$wrap),
+                    $minus = $(minusCell,$wrap),
+                    $plus = $(plusCell,$wrap),
+                    maxnum=parseInt($wrap.attr('data-max')) || false,
+                    minnum=$wrap.attr('data-min') || 1,
+                    initnum=$input.val() || minnum;
+                /*初始*/
+                $input.val(initnum);
+                checkIlegal();
+                function checkIlegal(){
+                    var value =parseInt($input.val());
+
+                    //
+                     if (maxnum&&value>maxnum) {
+                        $input.val(maxnum);
+                    }
+                    else if (value<minnum) {
+                        $input.val(minnum);
+                    }
+                    if(value<=minnum){
+                        $minus.addClass(disClass);
+                    }else{
+                        $minus.removeClass(disClass);
+                    }
+                    if (value>=maxnum) {
+                        $plus.addClass(disClass);
+                    }else {
+                        $plus.removeClass(disClass);
+                    }
+
+                }
+                function checknull() {
+                    var value =$input.val();
+                    if(value === "" || value === "0"){
+                        $input.val(minnum);
+                    }
+                }
+                $input.keyup(function(evt){
+                    var value = $(this).val();
+                    var newvalue = value.replace(/[^\d]/g,"");
+                    $(this).val(newvalue);
+                    checknull();
+                });
+                $input.blur(function(){
+                    checknull();
+                    checkIlegal();
+                })
+
+                $minus.click(function(){
+                    minus();
+                     checkIlegal();
+                });
+
+                $plus.click(function(){
+                    add();
+                    checkIlegal();
+                });
+
+                function add () {
+                    var value = $input.val();
+                    var plus = parseInt(value)+1;
+                    $input.val(plus);
+                }
+                function minus () {
+                    var value = parseInt($input.val());
+                    var minus = value-1;
+                    $input.val(minus);
+                }
+            });
+        }
+        $.fn.goodsCount = goodsCount;
+</script>
+<script >
+    $(function () {
+
+       
+
+        
+               
+                
+             
+            
+             //删除
+             $('.goods .del').on('click',function () {
+                    var self=$(this),
+                    shop=self.parents('tbody').prev('tbody'),
+                    gbox=self.parents('tbody');
+                    self.parents('.goods').remove();
+                    var len=gbox.find('.goods').length;
+                    if (len<=0) {
+                       shop.remove();
+                    }
+                    caculate();
+                    shopaccess();
+                    shopcheck(gbox);
+             });
+             
+
+
+        //结算固定显示
+        $(window).on('load resize scroll',function () {
+            var bar=$('.cart-total'),
+            barH=bar.outerHeight(),
+            barWrap=bar.parent(),
+            otop=barWrap.offset().top,
+            oleft=barWrap.offset().left,
+            sTop=$(this).scrollTop(),
+            wh=$(this).height();
+            if (sTop+wh-barH<otop) {
+                bar.addClass('fixed');
+                var left2=oleft-$(this).scrollLeft()
+                bar.css('left',left2);
+            }
+            else {
+                bar.removeClass('fixed');
+            }
+        });
+    });
+</script> -->
+</html>
